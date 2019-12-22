@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class MainController {
-    private int choise = 0;
-
     @FXML
     private Button btn1;
     @FXML
@@ -80,6 +78,8 @@ public class MainController {
     @FXML
     private Button btn36;
 
+    private int choise = 0;
+
     @FXML
     private void clickO(ActionEvent event) {
         choise = 1;
@@ -137,7 +137,7 @@ public class MainController {
         } else if (choise == 2) {
             btn5.setText("Х");
         }
-        btn2.setDisable(true);
+        btn5.setDisable(true);
     }
 
     @FXML
@@ -147,7 +147,7 @@ public class MainController {
         } else if (choise == 2) {
             btn6.setText("Х");
         }
-        btn2.setDisable(true);
+        btn6.setDisable(true);
     }
 
     @FXML
@@ -157,7 +157,7 @@ public class MainController {
         } else if (choise == 2) {
             btn7.setText("Х");
         }
-        btn2.setDisable(true);
+        btn7.setDisable(true);
     }
 
     @FXML
@@ -167,7 +167,7 @@ public class MainController {
         } else if (choise == 2) {
             btn8.setText("Х");
         }
-        btn2.setDisable(true);
+        btn8.setDisable(true);
     }
 
     @FXML
@@ -177,7 +177,7 @@ public class MainController {
         } else if (choise == 2) {
             btn9.setText("Х");
         }
-        btn2.setDisable(true);
+        btn9.setDisable(true);
     }
 
     @FXML
@@ -187,7 +187,7 @@ public class MainController {
         } else if (choise == 2) {
             btn1.setText("Х");
         }
-        btn2.setDisable(true);
+        btn10.setDisable(true);
     }
 
     @FXML
@@ -197,7 +197,7 @@ public class MainController {
         } else if (choise == 2) {
             btn11.setText("Х");
         }
-        btn2.setDisable(true);
+        btn11.setDisable(true);
     }
 
     @FXML
@@ -207,7 +207,7 @@ public class MainController {
         } else if (choise == 2) {
             btn12.setText("Х");
         }
-        btn2.setDisable(true);
+        btn12.setDisable(true);
     }
 
     @FXML
@@ -217,7 +217,7 @@ public class MainController {
         } else if (choise == 2) {
             btn13.setText("Х");
         }
-        btn2.setDisable(true);
+        btn13.setDisable(true);
     }
 
     @FXML
@@ -227,7 +227,7 @@ public class MainController {
         } else if (choise == 2) {
             btn14.setText("Х");
         }
-        btn2.setDisable(true);
+        btn14.setDisable(true);
     }
 
     @FXML
@@ -237,7 +237,7 @@ public class MainController {
         } else if (choise == 2) {
             btn15.setText("Х");
         }
-        btn2.setDisable(true);
+        btn15.setDisable(true);
     }
 
     @FXML
@@ -247,7 +247,7 @@ public class MainController {
         } else if (choise == 2) {
             btn16.setText("Х");
         }
-        btn2.setDisable(true);
+        btn16.setDisable(true);
     }
 
     @FXML
@@ -257,7 +257,7 @@ public class MainController {
         } else if (choise == 2) {
             btn17.setText("Х");
         }
-        btn2.setDisable(true);
+        btn17.setDisable(true);
     }
 
     @FXML
@@ -267,7 +267,7 @@ public class MainController {
         } else if (choise == 2) {
             btn18.setText("Х");
         }
-        btn2.setDisable(true);
+        btn18.setDisable(true);
     }
 
     @FXML
@@ -277,7 +277,7 @@ public class MainController {
         } else if (choise == 2) {
             btn19.setText("Х");
         }
-        btn2.setDisable(true);
+        btn19.setDisable(true);
     }
 
     @FXML
@@ -287,7 +287,7 @@ public class MainController {
         } else if (choise == 2) {
             btn20.setText("Х");
         }
-        btn2.setDisable(true);
+        btn20.setDisable(true);
     }
 
     @FXML
@@ -297,7 +297,7 @@ public class MainController {
         } else if (choise == 2) {
             btn21.setText("Х");
         }
-        btn2.setDisable(true);
+        btn21.setDisable(true);
     }
 
     @FXML
@@ -307,7 +307,7 @@ public class MainController {
         } else if (choise == 2) {
             btn22.setText("Х");
         } else btn1.setText("Error");
-        btn2.setDisable(true);
+        btn22.setDisable(true);
     }
 
     @FXML
@@ -317,7 +317,7 @@ public class MainController {
         } else if (choise == 2) {
             btn23.setText("Х");
         }
-        btn2.setDisable(true);
+        btn23.setDisable(true);
     }
 
     @FXML
@@ -327,7 +327,7 @@ public class MainController {
         } else if (choise == 2) {
             btn24.setText("Х");
         }
-        btn2.setDisable(true);
+        btn24.setDisable(true);
     }
 
     @FXML
@@ -337,7 +337,7 @@ public class MainController {
         } else if (choise == 2) {
             btn25.setText("Х");
         }
-        btn2.setDisable(true);
+        btn25.setDisable(true);
     }
 
     @FXML
@@ -347,7 +347,7 @@ public class MainController {
         } else if (choise == 2) {
             btn26.setText("Х");
         }
-        btn2.setDisable(true);
+        btn26.setDisable(true);
     }
 
     @FXML
@@ -357,7 +357,7 @@ public class MainController {
         } else if (choise == 2) {
             btn27.setText("Х");
         }
-        btn2.setDisable(true);
+        btn27.setDisable(true);
     }
 
     @FXML
@@ -367,7 +367,7 @@ public class MainController {
         } else if (choise == 2) {
             btn28.setText("Х");
         }
-        btn2.setDisable(true);
+        btn28.setDisable(true);
     }
 
     @FXML
@@ -377,7 +377,7 @@ public class MainController {
         } else if (choise == 2) {
             btn29.setText("Х");
         }
-        btn2.setDisable(true);
+        btn29.setDisable(true);
     }
 
     @FXML
@@ -387,7 +387,7 @@ public class MainController {
         } else if (choise == 2) {
             btn30.setText("Х");
         }
-        btn2.setDisable(true);
+        btn30.setDisable(true);
     }
 
     @FXML
@@ -397,7 +397,7 @@ public class MainController {
         } else if (choise == 2) {
             btn31.setText("Х");
         }
-        btn2.setDisable(true);
+        btn31.setDisable(true);
     }
 
     @FXML
@@ -407,7 +407,7 @@ public class MainController {
         } else if (choise == 2) {
             btn32.setText("Х");
         }
-        btn2.setDisable(true);
+        btn32.setDisable(true);
     }
 
     @FXML
@@ -417,7 +417,7 @@ public class MainController {
         } else if (choise == 2) {
             btn33.setText("Х");
         }
-        btn2.setDisable(true);
+        btn33.setDisable(true);
     }
 
     @FXML
@@ -427,7 +427,7 @@ public class MainController {
         } else if (choise == 2) {
             btn34.setText("Х");
         }
-        btn2.setDisable(true);
+        btn34.setDisable(true);
     }
 
     @FXML
@@ -437,7 +437,7 @@ public class MainController {
         } else if (choise == 2) {
             btn35.setText("Х");
         }
-        btn2.setDisable(true);
+        btn35.setDisable(true);
     }
 
     @FXML
@@ -447,7 +447,6 @@ public class MainController {
         } else if (choise == 2) {
             btn36.setText("Х");
         }
-        btn2.setDisable(true);
+        btn36.setDisable(true);
     }
-
 }
