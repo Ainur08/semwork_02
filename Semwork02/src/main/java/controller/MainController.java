@@ -1,452 +1,143 @@
 package controller;
 
+import client.ChatClient;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import model.Payload;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class MainController {
-    @FXML
-    private Button btn1;
-    @FXML
-    private Button btn2;
-    @FXML
-    private Button btn3;
-    @FXML
-    private Button btn4;
-    @FXML
-    private Button btn5;
-    @FXML
-    private Button btn6;
-    @FXML
-    private Button btn7;
-    @FXML
-    private Button btn8;
-    @FXML
-    private Button btn9;
-    @FXML
-    private Button btn10;
-    @FXML
-    private Button btn11;
-    @FXML
-    private Button btn12;
-    @FXML
-    private Button btn13;
-    @FXML
-    private Button btn14;
-    @FXML
-    private Button btn15;
-    @FXML
-    private Button btn16;
-    @FXML
-    private Button btn17;
-    @FXML
-    private Button btn18;
-    @FXML
-    private Button btn19;
-    @FXML
-    private Button btn20;
-    @FXML
-    private Button btn21;
-    @FXML
-    private Button btn22;
-    @FXML
-    private Button btn23;
-    @FXML
-    private Button btn24;
-    @FXML
-    private Button btn25;
-    @FXML
-    private Button btn26;
-    @FXML
-    private Button btn27;
-    @FXML
-    private Button btn28;
-    @FXML
-    private Button btn29;
-    @FXML
-    private Button btn30;
-    @FXML
-    private Button btn31;
-    @FXML
-    private Button btn32;
-    @FXML
-    private Button btn33;
-    @FXML
-    private Button btn34;
-    @FXML
-    private Button btn35;
-    @FXML
-    private Button btn36;
+    private int choice = 0;
+    private Stage stage;
+    private ArrayList arrBtn;
 
-    private int choise = 0;
-
-    @FXML
-    private void clickO(ActionEvent event) {
-        choise = 1;
+    public MainController(Stage stage) {
+        this.stage = stage;
     }
 
-    @FXML
-    private void clickX(ActionEvent event) {
-        choise = 2;
-    }
+    public void start() throws IOException {
+        // отображение
+        Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Order_and_Chaos");
+        stage.setWidth(750);
+        stage.setHeight(600);
+        stage.show();
 
-    @FXML
-    private void click1(ActionEvent event) {
-        if (choise == 1) {
-            btn1.setText("O");
-        } else if (choise == 2) {
-            btn1.setText("Х");
+        // массив кнопок
+        arrBtn = getArr(root);
+
+        // механика крестика и нолика
+        Button btnO = (Button) root.lookup("#btnO");
+        Button btnX = (Button) root.lookup("#btnX");
+        btnO.setOnMouseClicked(event -> {
+            choice = 1;
+        });
+        btnX.setOnMouseClicked(event -> {
+            choice = 2;
+        });
+
+        // механика остальных кнопок
+        for (int i = 0; i < arrBtn.size(); i++) {
+            Button button = (Button) arrBtn.get(i);
+            button.setOnMouseClicked(event -> {
+                ObjectMapper objectMapper = new ObjectMapper();
+                Payload payload = new Payload();
+                payload.setHeader("Command");
+                LinkedHashMap<String, String> commandPayload = new LinkedHashMap<>();
+                commandPayload.put("command", "get changes");
+                commandPayload.put("choice", String.valueOf(choice));
+
+                if (choice == 1) {
+                    button.setText("O");
+                    commandPayload.put("button", String.valueOf(button));
+                } else if (choice == 2) {
+                    button.setText("X");
+                    commandPayload.put("button", String.valueOf(button));
+                }
+
+                payload.setPayload(commandPayload);
+                try {
+                    String jsonProduct = objectMapper.writeValueAsString(payload);
+                    ChatClient.sendMessage(jsonProduct);
+                } catch (JsonProcessingException e) {
+                    throw new IllegalStateException(e);
+                }
+            });
         }
-        btn1.setDisable(true);
     }
 
-    @FXML
-    private void click2(ActionEvent event) {
-        if (choise == 1) {
-            btn2.setText("O");
-        } else if (choise == 2) {
-            btn2.setText("Х");
+    public ArrayList getArr(Parent root) {
+        ArrayList<Button> arrayList = new ArrayList();
+        arrayList.add((Button) root.lookup("#btn1"));
+        arrayList.add((Button) root.lookup("#btn2"));
+        arrayList.add((Button) root.lookup("#btn3"));
+        arrayList.add((Button) root.lookup("#btn4"));
+        arrayList.add((Button) root.lookup("#btn5"));
+        arrayList.add((Button) root.lookup("#btn6"));
+        arrayList.add((Button) root.lookup("#btn7"));
+        arrayList.add((Button) root.lookup("#btn8"));
+        arrayList.add((Button) root.lookup("#btn9"));
+        arrayList.add((Button) root.lookup("#btn10"));
+        arrayList.add((Button) root.lookup("#btn11"));
+        arrayList.add((Button) root.lookup("#btn12"));
+        arrayList.add((Button) root.lookup("#btn13"));
+        arrayList.add((Button) root.lookup("#btn14"));
+        arrayList.add((Button) root.lookup("#btn15"));
+        arrayList.add((Button) root.lookup("#btn16"));
+        arrayList.add((Button) root.lookup("#btn17"));
+        arrayList.add((Button) root.lookup("#btn18"));
+        arrayList.add((Button) root.lookup("#btn19"));
+        arrayList.add((Button) root.lookup("#btn20"));
+        arrayList.add((Button) root.lookup("#btn21"));
+        arrayList.add((Button) root.lookup("#btn22"));
+        arrayList.add((Button) root.lookup("#btn23"));
+        arrayList.add((Button) root.lookup("#btn24"));
+        arrayList.add((Button) root.lookup("#btn25"));
+        arrayList.add((Button) root.lookup("#btn26"));
+        arrayList.add((Button) root.lookup("#btn27"));
+        arrayList.add((Button) root.lookup("#btn28"));
+        arrayList.add((Button) root.lookup("#btn29"));
+        arrayList.add((Button) root.lookup("#btn30"));
+        arrayList.add((Button) root.lookup("#btn31"));
+        arrayList.add((Button) root.lookup("#btn32"));
+        arrayList.add((Button) root.lookup("#btn33"));
+        arrayList.add((Button) root.lookup("#btn34"));
+        arrayList.add((Button) root.lookup("#btn35"));
+        arrayList.add((Button) root.lookup("#btn36"));
+        return arrayList;
+    }
+
+    public void click(Integer choice, String button) {
+        for (int i = 0; i < arrBtn.size(); i++) {
+            Button btn = (Button) arrBtn.get(i);
+            if (choice == 1 & button.substring(0, 34).equals(String.valueOf(btn).substring(0, 34))) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn.setText("O");
+                    }
+                });
+            } else if (choice == 2 & button.substring(0, 34).equals(String.valueOf(btn).substring(0, 34))) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn.setText("X");
+                    }
+                });
+            }
         }
-        btn2.setDisable(true);
-    }
-
-    @FXML
-    private void click3(ActionEvent event) {
-        if (choise == 1) {
-            btn3.setText("O");
-        } else if (choise == 2) {
-            btn3.setText("Х");
-        }
-        btn3.setDisable(true);
-    }
-
-    @FXML
-    private void click4(ActionEvent event) {
-        if (choise == 1) {
-            btn4.setText("O");
-        } else if (choise == 2) {
-            btn4.setText("Х");
-        }
-        btn4.setDisable(true);
-    }
-
-    @FXML
-    private void click5(ActionEvent event) {
-        if (choise == 1) {
-            btn5.setText("O");
-        } else if (choise == 2) {
-            btn5.setText("Х");
-        }
-        btn5.setDisable(true);
-    }
-
-    @FXML
-    private void click6(ActionEvent event) {
-        if (choise == 1) {
-            btn6.setText("O");
-        } else if (choise == 2) {
-            btn6.setText("Х");
-        }
-        btn6.setDisable(true);
-    }
-
-    @FXML
-    private void click7(ActionEvent event) {
-        if (choise == 1) {
-            btn7.setText("O");
-        } else if (choise == 2) {
-            btn7.setText("Х");
-        }
-        btn7.setDisable(true);
-    }
-
-    @FXML
-    private void click8(ActionEvent event) {
-        if (choise == 1) {
-            btn8.setText("O");
-        } else if (choise == 2) {
-            btn8.setText("Х");
-        }
-        btn8.setDisable(true);
-    }
-
-    @FXML
-    private void click9(ActionEvent event) {
-        if (choise == 1) {
-            btn9.setText("O");
-        } else if (choise == 2) {
-            btn9.setText("Х");
-        }
-        btn9.setDisable(true);
-    }
-
-    @FXML
-    private void click10(ActionEvent event) {
-        if (choise == 1) {
-            btn10.setText("O");
-        } else if (choise == 2) {
-            btn1.setText("Х");
-        }
-        btn10.setDisable(true);
-    }
-
-    @FXML
-    private void click11(ActionEvent event) {
-        if (choise == 1) {
-            btn11.setText("O");
-        } else if (choise == 2) {
-            btn11.setText("Х");
-        }
-        btn11.setDisable(true);
-    }
-
-    @FXML
-    private void click12(ActionEvent event) {
-        if (choise == 1) {
-            btn12.setText("O");
-        } else if (choise == 2) {
-            btn12.setText("Х");
-        }
-        btn12.setDisable(true);
-    }
-
-    @FXML
-    private void click13(ActionEvent event) {
-        if (choise == 1) {
-            btn13.setText("O");
-        } else if (choise == 2) {
-            btn13.setText("Х");
-        }
-        btn13.setDisable(true);
-    }
-
-    @FXML
-    private void click14(ActionEvent event) {
-        if (choise == 1) {
-            btn14.setText("O");
-        } else if (choise == 2) {
-            btn14.setText("Х");
-        }
-        btn14.setDisable(true);
-    }
-
-    @FXML
-    private void click15(ActionEvent event) {
-        if (choise == 1) {
-            btn15.setText("O");
-        } else if (choise == 2) {
-            btn15.setText("Х");
-        }
-        btn15.setDisable(true);
-    }
-
-    @FXML
-    private void click16(ActionEvent event) {
-        if (choise == 1) {
-            btn16.setText("O");
-        } else if (choise == 2) {
-            btn16.setText("Х");
-        }
-        btn16.setDisable(true);
-    }
-
-    @FXML
-    private void click17(ActionEvent event) {
-        if (choise == 1) {
-            btn17.setText("O");
-        } else if (choise == 2) {
-            btn17.setText("Х");
-        }
-        btn17.setDisable(true);
-    }
-
-    @FXML
-    private void click18(ActionEvent event) {
-        if (choise == 1) {
-            btn18.setText("O");
-        } else if (choise == 2) {
-            btn18.setText("Х");
-        }
-        btn18.setDisable(true);
-    }
-
-    @FXML
-    private void click19(ActionEvent event) {
-        if (choise == 1) {
-            btn19.setText("O");
-        } else if (choise == 2) {
-            btn19.setText("Х");
-        }
-        btn19.setDisable(true);
-    }
-
-    @FXML
-    private void click20(ActionEvent event) {
-        if (choise == 1) {
-            btn20.setText("O");
-        } else if (choise == 2) {
-            btn20.setText("Х");
-        }
-        btn20.setDisable(true);
-    }
-
-    @FXML
-    private void click21(ActionEvent event) {
-        if (choise == 1) {
-            btn21.setText("O");
-        } else if (choise == 2) {
-            btn21.setText("Х");
-        }
-        btn21.setDisable(true);
-    }
-
-    @FXML
-    private void click22(ActionEvent event) {
-        if (choise == 1) {
-            btn22.setText("O");
-        } else if (choise == 2) {
-            btn22.setText("Х");
-        } else btn1.setText("Error");
-        btn22.setDisable(true);
-    }
-
-    @FXML
-    private void click23(ActionEvent event) {
-        if (choise == 1) {
-            btn23.setText("O");
-        } else if (choise == 2) {
-            btn23.setText("Х");
-        }
-        btn23.setDisable(true);
-    }
-
-    @FXML
-    private void click24(ActionEvent event) {
-        if (choise == 1) {
-            btn24.setText("O");
-        } else if (choise == 2) {
-            btn24.setText("Х");
-        }
-        btn24.setDisable(true);
-    }
-
-    @FXML
-    private void click25(ActionEvent event) {
-        if (choise == 1) {
-            btn25.setText("O");
-        } else if (choise == 2) {
-            btn25.setText("Х");
-        }
-        btn25.setDisable(true);
-    }
-
-    @FXML
-    private void click26(ActionEvent event) {
-        if (choise == 1) {
-            btn26.setText("O");
-        } else if (choise == 2) {
-            btn26.setText("Х");
-        }
-        btn26.setDisable(true);
-    }
-
-    @FXML
-    private void click27(ActionEvent event) {
-        if (choise == 1) {
-            btn27.setText("O");
-        } else if (choise == 2) {
-            btn27.setText("Х");
-        }
-        btn27.setDisable(true);
-    }
-
-    @FXML
-    private void click28(ActionEvent event) {
-        if (choise == 1) {
-            btn28.setText("O");
-        } else if (choise == 2) {
-            btn28.setText("Х");
-        }
-        btn28.setDisable(true);
-    }
-
-    @FXML
-    private void click29(ActionEvent event) {
-        if (choise == 1) {
-            btn29.setText("O");
-        } else if (choise == 2) {
-            btn29.setText("Х");
-        }
-        btn29.setDisable(true);
-    }
-
-    @FXML
-    private void click30(ActionEvent event) {
-        if (choise == 1) {
-            btn30.setText("O");
-        } else if (choise == 2) {
-            btn30.setText("Х");
-        }
-        btn30.setDisable(true);
-    }
-
-    @FXML
-    private void click31(ActionEvent event) {
-        if (choise == 1) {
-            btn31.setText("O");
-        } else if (choise == 2) {
-            btn31.setText("Х");
-        }
-        btn31.setDisable(true);
-    }
-
-    @FXML
-    private void click32(ActionEvent event) {
-        if (choise == 1) {
-            btn32.setText("O");
-        } else if (choise == 2) {
-            btn32.setText("Х");
-        }
-        btn32.setDisable(true);
-    }
-
-    @FXML
-    private void click33(ActionEvent event) {
-        if (choise == 1) {
-            btn33.setText("O");
-        } else if (choise == 2) {
-            btn33.setText("Х");
-        }
-        btn33.setDisable(true);
-    }
-
-    @FXML
-    private void click34(ActionEvent event) {
-        if (choise == 1) {
-            btn34.setText("O");
-        } else if (choise == 2) {
-            btn34.setText("Х");
-        }
-        btn34.setDisable(true);
-    }
-
-    @FXML
-    private void click35(ActionEvent event) {
-        if (choise == 1) {
-            btn35.setText("O");
-        } else if (choise == 2) {
-            btn35.setText("Х");
-        }
-        btn35.setDisable(true);
-    }
-
-    @FXML
-    private void click36(ActionEvent event) {
-        if (choise == 1) {
-            btn36.setText("O");
-        } else if (choise == 2) {
-            btn36.setText("Х");
-        }
-        btn36.setDisable(true);
     }
 }
