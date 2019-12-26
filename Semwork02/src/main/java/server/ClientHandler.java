@@ -41,7 +41,7 @@ public class ClientHandler extends Thread {
                 requestsDispatcher.handleRequest(line);
             }
             reader.close();
-            clientSocket.close();
+            //clientSocket.close();
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

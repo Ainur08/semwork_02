@@ -16,8 +16,16 @@ public class RequestsDispatcher {
         switch (command) {
             case "get changes": {
                 LogicController logicController = new LogicController(request.getParameter("role"));
-                int flag = logicController.draw(request.getParameter("choice"), request.getParameter("button")); //проверка на выигравшего
-
+                logicController.draw(request.getParameter("choice"), request.getParameter("button")); //проверка на выигравшего
+///
+                int[][]arr = logicController.getMatrix();
+                for (int i = 0; i < arr.length; i++) {
+                    for (int j = 0; j < arr.length; j++) {
+                        System.out.print(arr[i][j]);
+                    }
+                    System.out.println();
+                }
+                ////
                 Changes changes = new Changes(request.getParameter("choice"),
                         request.getParameter("button"));
                 clientHandler.sendMessageAllClient(Response.build(changes));

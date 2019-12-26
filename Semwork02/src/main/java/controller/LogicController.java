@@ -16,14 +16,14 @@ public class LogicController {
     }
 
     // 1 - O, 2 - X
-    public int draw(String choice, String button) {
+    public void draw(String choice, String button) {
         if (button.substring(13, 15).contains(",")) {
             String[] str = button.substring(13, 15).split(",");
-            matrix[Integer.valueOf(str[0]) / 3][Integer.valueOf(str[0]) % 3 - 1] = Integer.valueOf(choice);
+            matrix[(Integer.valueOf(str[0])-1) % 6][Integer.valueOf(str[0]) / 6] = Integer.valueOf(choice);
         } else {
-            matrix[Integer.valueOf(button.substring(13, 15)) / 3][Integer.valueOf(button.substring(13, 15)) % 3 - 1] = Integer.valueOf(choice);
+            matrix[(Integer.valueOf(button.substring(13, 15)) -1)% 6][Integer.valueOf(button.substring(13, 15)) / 6] = Integer.valueOf(choice);
         }
-        return checkWin();
+
     }
 
     // 0 - default, 1-order, 2 - chaos
