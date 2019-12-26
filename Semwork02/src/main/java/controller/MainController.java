@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.Payload;
+import model.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class MainController {
         });
 
         // механика остальных кнопок
+        User user = new User();
         for (int i = 0; i < arrBtn.size(); i++) {
             Button button = (Button) arrBtn.get(i);
             button.setOnMouseClicked(event -> {
@@ -58,6 +60,7 @@ public class MainController {
                 payload.setHeader("Command");
                 LinkedHashMap<String, String> commandPayload = new LinkedHashMap<>();
                 commandPayload.put("command", "get changes");
+                commandPayload.put("role", user.getRole());
                 commandPayload.put("choice", String.valueOf(choice));
 
                 if (choice == 1) {

@@ -1,5 +1,6 @@
 package dispatcher;
 
+import controller.LogicController;
 import model.Changes;
 import protocol.Request;
 import protocol.Response;
@@ -14,6 +15,9 @@ public class RequestsDispatcher {
         String command = request.getCommand();
         switch (command) {
             case "get changes": {
+                LogicController logicController = new LogicController(request.getParameter("role"));
+                int flag = logicController.draw(request.getParameter("choice"), request.getParameter("button")); //проверка на выигравшего
+
                 Changes changes = new Changes(request.getParameter("choice"),
                         request.getParameter("button"));
                 clientHandler.sendMessageAllClient(Response.build(changes));
